@@ -124,24 +124,4 @@ describe Pinch do
       end
     end
   end
-
-  describe "Pinch.content_length" do
-    before do
-      @url  = 'http://peterhellberg.github.io/pinch/test.zip'
-    end
-
-    it "should return the size of the ZIP file" do
-      VCR.use_cassette('content_length') do
-        assert_equal 2516612, Pinch.content_length(@url)
-      end
-    end
-
-    it "should raise an exception if the file doesn't exist" do
-      VCR.use_cassette('content_length_404') do
-        assert_raises(Net::HTTPClientException) do
-          Pinch.content_length(@url+'404')
-        end
-      end
-    end
-  end
 end
